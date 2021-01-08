@@ -5,7 +5,9 @@ import com.rassus.aggregatormicroservice.client.HumidityClient;
 import com.rassus.aggregatormicroservice.client.TemperatureClient;
 import com.rassus.aggregatormicroservice.models.ServiceResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DiscoveryService {
     @Value("service.temperature")
     private String temperatureServiceName;

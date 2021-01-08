@@ -1,6 +1,6 @@
 package com.rassus.aggregatormicroservice.services;
 
-import com.rassus.aggregatormicroservice.client.EurekaClient;
+import com.rassus.aggregatormicroservice.client.MyEurekaClient;
 import com.rassus.aggregatormicroservice.client.HumidityClient;
 import com.rassus.aggregatormicroservice.client.TemperatureClient;
 import com.rassus.aggregatormicroservice.models.ServiceResponse;
@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DiscoveryService {
-    @Value("service.temperature")
+    @Value("${service.temperature}")
     private String temperatureServiceName;
 
-    @Value("service.humidity")
+    @Value("${service.humidity}")
     private String humidityServiceName;
 
-    private final EurekaClient client;
+    private final MyEurekaClient client;
 
-    public DiscoveryService() {
-        this.client = new EurekaClient();
+    public DiscoveryService(MyEurekaClient client) {
+        this.client = client;
     }
 
     public TemperatureClient getTemperatureClient() {
@@ -32,7 +32,7 @@ public class DiscoveryService {
     }
 
     public String toAddress(ServiceResponse service) {
-        return service.getApplication().getInstance().getIpAddr() + ":" +
-                service.getApplication().getInstance().getPort().getPort();
+        return "http://" + service.getApplication().getInstance().get(0).getIpAddr() + ":" +
+                service.getApplication().getInstance().get(0).getPort().getPort();
     }
 }

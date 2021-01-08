@@ -7,14 +7,13 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.jaxrs.JAXRSContract;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-public class EurekaClient {
-    @Value("eureka.url")
-    private String url;
-
+@Component
+public class MyEurekaClient {
     private final EurekaApi api;
 
-    public EurekaClient() {
+    public MyEurekaClient(@Value("${eureka.url}") String url) {
         this.api = Feign.builder()
                 .contract(new JAXRSContract())
                 .decoder(new JacksonDecoder())

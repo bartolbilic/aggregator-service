@@ -1,8 +1,9 @@
 package com.rassus.aggregatormicroservice.models;
 
+import lombok.Data;
 import lombok.Value;
 
-@Value
+@Data
 public class TemperatureResponse {
-    private double temperature;
+    private double value;
 }

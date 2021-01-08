@@ -6,7 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 public interface TemperatureApi {
-    @Path("/current-readings")
     @GET
+    @Path("/current-reading")
     TemperatureResponse getTemperature();
 }

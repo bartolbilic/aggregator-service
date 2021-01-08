@@ -1,14 +1,17 @@
 package com.rassus.aggregatormicroservice.api;
 
 import com.rassus.aggregatormicroservice.models.ServiceResponse;
-import org.springframework.web.bind.annotation.RequestParam;
+import feign.Headers;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public interface EurekaApi {
 
+    @Headers("Accept: application/json")
     @Path("/eureka/apps/{instanceId}")
     @GET
-    ServiceResponse getService(@RequestParam String instanceId);
+    ServiceResponse getService(@PathParam("instanceId") String instanceId);
 }

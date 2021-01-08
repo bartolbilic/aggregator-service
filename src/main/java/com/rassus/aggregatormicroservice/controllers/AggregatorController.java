@@ -16,8 +16,8 @@ public class AggregatorController {
     @GetMapping("/readings")
     public Measurement getReadings() {
         return new Measurement(
-                service.getTemperatureClient().getCurrentTemperature().getTemperature(),
-                service.getHumidityClient().getCurrentHumidity().getHumidity());
+                service.getTemperatureClient().getCurrentTemperature().getValue(),
+                service.getHumidityClient().getCurrentHumidity().getValue());
     }
 
 }
